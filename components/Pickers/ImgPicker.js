@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderColor: Color.lightGrey,
+    borderWidth: 1,
   },
   image: {
     width: "100%",

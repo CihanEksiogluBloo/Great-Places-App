@@ -1,11 +1,18 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { Entypo } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PlaceItem from "../components/UI/PlaceItem";
+import * as placesActions from "../store/actions/places-action";
 
-const PlacesListScreen = ({navigation}) => {
+const PlacesListScreen = ({ navigation }) => {
   const places = useSelector((state) => state.places.places);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(placesActions.loadPlaces());
+  }, [dispatch]);
+
   return (
     <FlatList
       data={places}

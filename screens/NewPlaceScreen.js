@@ -16,7 +16,8 @@ import {
 import { setStateFunc } from "../functions/GeneralFunctions";
 import { useDispatch } from "react-redux";
 import * as placesActions from "../store/actions/places-action";
-import ImgPicker from "../components/Buttons/ImgPicker";
+import LocationPicker from "../components/Pickers/LocationPicker";
+import ImgPicker from "../components/Pickers/ImgPicker"
 
 const NewPlaceScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const NewPlaceScreen = ({ navigation }) => {
           onImageTake={setStateFunc}
           setSelectedImageState={setSelectedImage}
         />
+        <LocationPicker />
 
         <Button
           title="Save Place"
