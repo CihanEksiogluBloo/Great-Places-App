@@ -28,7 +28,7 @@ const PlacesListScreen = ({ navigation }) => {
               });
             }}
             title={item.title}
-            address={null}
+            address={item.address}
           />
         );
       }}

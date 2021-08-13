@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -17,12 +17,20 @@ import { setStateFunc } from "../functions/GeneralFunctions";
 import { useDispatch } from "react-redux";
 import * as placesActions from "../store/actions/places-action";
 import LocationPicker from "../components/Pickers/LocationPicker";
-import ImgPicker from "../components/Pickers/ImgPicker"
+import ImgPicker from "../components/Pickers/ImgPicker";
 
 const NewPlaceScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [titleValue, setTitleValue] = useState("");
   const [selectedImage, setSelectedImage] = useState();
+  const [selectedLocation, setSelectedLocation] = useState();
+
+  const locationPickedHandler = useCallback(
+    (location) => {
+      setSelectedLocation(location);
+    },
+    [setSelectedLocation]
+  );
 
   return (
     <ScrollView>
@@ -37,7 +45,10 @@ const NewPlaceScreen = ({ navigation }) => {
           onImageTake={setStateFunc}
           setSelectedImageState={setSelectedImage}
         />
-        <LocationPicker />
+        <LocationPicker
+          navigation={navigation}
+          onLocationPicked={locationPickedHandler}
+        />
 
         <Button
           title="Save Place"
@@ -48,7 +59,8 @@ const NewPlaceScreen = ({ navigation }) => {
               placesActions.addPlace,
               dispatch,
               navigation.goBack,
-              selectedImage
+              selectedImage,
+              selectedLocation
             )
           }
         />

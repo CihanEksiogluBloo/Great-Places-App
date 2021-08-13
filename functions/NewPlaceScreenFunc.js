@@ -7,9 +7,12 @@ export const savePlaceHandler = (
   addPlace,
   dispatch,
   goBack,
-  selectedImage
+  selectedImage,
+  selectedLocation
 ) => {
-  return dispatch(addPlace(titleValue, selectedImage)), goBack();
+  return (
+    dispatch(addPlace(titleValue, selectedImage, selectedLocation)), goBack()
+  );
 };
 
 export const imageTakenHandler = (imagePath, setSelectedImageState) => {
